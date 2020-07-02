@@ -9,7 +9,417 @@
         *col{
             margin: 0
         };
+        .col-lg-3{<!DOCTYPE html>
+<head>
+    <title>Covid-Tracker</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link rel="icon" href="https://disease.sh/assets/img/flags/in.png" type="image/icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body class="body">
+    <style>
+        *col{
+            margin: 0
+        };
         .col-lg-3{
+            min-width: 200px;
+            margin: auto;
+            font-size: 20px !important;
+        }
+        .col-md-6{
+            font-size: 30px;
+            
+        }
+        .card{
+            animation: Fadein 2s;
+            height: 80px;
+            margin: 20px auto;
+            text-align: center;
+            border-radius: 10px;
+            
+        }
+        
+        .cardHead{
+            text-align: center;
+            background-color: azure;
+            font-size: 3em;
+            font-weight: bolder;
+            color: darkblue;
+            border: 1px solid darkblue ;
+            
+        }
+        .cardHeading{
+            background-color: rgb(177, 177, 192);
+            color: black;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 1px;
+        }
+        .countryName{
+         width: 100%;
+         height: 100px;
+        
+         background-color: lightsteelblue;
+        }
+        .form{
+            width: 100%;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            
+        }
+        .box{
+            width: 100%;
+            padding: 0;
+            
+            background: linear-gradient(to right, #6699ff 28%, #33ccff 100%);
+            position: absolute;
+            top: 0;
+            z-index: -11;
+        }
+        
+        .row{
+            margin-top: 10px;
+        }
+        footer{
+           
+            text-align: center;
+        }
+        input{
+            width: 80%;
+        }
+        .Feedback{
+            position: relative;
+            z-index: 100;
+            height: 32px;
+        }
+        a{
+            color: #000;
+        }
+        .efect{
+            margin-top: 5vh;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 0 10px;
+            background-color: ghostwhite;
+            
+        }
+      
+        @keyframes Fadein {
+            from{opacity: 0;}
+            to{opacity: 1;}
+        }
+        
+        span{
+            font-size: 2em;
+        }
+            
+        
+    </style>
+    
+    <div class="box">
+    
+    <div class="row">
+    <div class="md-2 col-lg-2"></div>
+   
+    
+  <div class="md-8 col-lg-8">
+      
+    <div class="efect">
+           
+              <div class="card">
+                    <div class="cardHead">
+                        Covid-Tracker
+                    </div>
+                    <div class="countryName">
+                        <h3 align="center" id="Country"></h3>
+                    </div>
+               
+                </div>
+ 
+        <div class="row ">
+
+                  <div class=" col-md-12 col-lg-3">
+                      <div class="card">
+                          <div class="cardHeading">Total cases</div>
+                          
+                          <span id="Cases"></span>
+                          
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-12">
+                      <div class="card">
+                       <div class="cardHeading">Total Active Cases</div>
+                       <span id="Active"></span>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-12">
+                    <div class="card">
+                     <div class="cardHeading">Total Recovered Cases</div>
+                     <span id="Recovered"></span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="card">
+                     <div class="cardHeading">Total Deaths</div>
+                     <span id="Deaths"></span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="card">
+                     <div class="cardHeading">Today Deaths</div>
+                     <span id="TodayDeaths"></span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="card">
+                     <div class="cardHeading">Today Recovered</div>
+                     <span id="TodayRecovered"></span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <div class="card">
+                     <div class="cardHeading">Total Tests</div>
+                     <span id="TotalTests"></span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="card">
+                     <div class="cardHeading">One case per People</div>
+                     <span id="OnepersonCases"></span>
+                    </div>
+                </div>
+
+              </div>
+              
+              <div align="center">
+              <span>Death Percentage</span> : <span id="Precentage"></span> %
+              </div>
+                     
+             
+                <canvas id="myChart" width="100" height="50"></canvas>
+                
+                
+                
+
+               
+      
+        <div class="form" >
+            
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        
+                            <input type="text" name="CName" id="CName" value="" placeholder="Enter Country Name" />
+                            <button id="btn" class="btn btn-secondary"  onclick=onSubmit()> submit</button>
+                             <div id="err"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        
+  
+     
+        <footer>
+            Stay home And Stay Safe
+            <br>
+            @Copyrights Designed and Created by Dipanshu Bhola
+            <br>
+            <button class=" btn btn-warning btn-sm Feedback">
+                <a href="mailto:dipanshubhola1009@gmail.com">Feedback</a>
+            </button>
+        </footer>
+   </div>
+   </div>
+  
+
+
+<div class="md-2 col-lg-2"></div>
+</div>
+
+    <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+
+
+            fetch('https://corona.lmao.ninja/v2/countries/India').then(data => { return data.json()}).then(data =>{ 
+            document.getElementById('Country').innerHTML = data.country.toUpperCase();
+            document.getElementById('Cases').innerHTML = data.cases.toLocaleString();
+            document.getElementById("Active").innerHTML = data.active.toLocaleString();
+            document.getElementById("Recovered").innerHTML = data.recovered.toLocaleString();
+            document.getElementById("TodayDeaths").innerHTML = data.todayDeaths.toLocaleString();
+            document.getElementById("TodayRecovered").innerHTML = data.todayRecovered.toLocaleString();
+            document.getElementById("Deaths").innerHTML = data.deaths.toLocaleString();
+            document.getElementById("TotalTests").innerHTML = data.tests.toLocaleString();
+            document.getElementById("OnepersonCases").innerHTML = data.oneCasePerPeople.toLocaleString();
+            document.getElementById("Precentage").innerHTML =  (data.deaths/data.cases).toLocaleString();
+            });
+        
+        let arrayData = [];
+        let arrayDates=[];
+        let arrayCovidActive =[];
+        let arrayCovidConfirmed =[];
+        let arrayRecovered = [];
+        fetch("https://api.covid19api.com/country/india").then(data => {return data.json()}).then(item => {
+            arrayData = item;
+            
+            for(var i =0 ; i<arrayData.length;i++){
+                
+                arrayDates[i] = new Date(arrayData[i].Date).toDateString();
+                arrayCovidConfirmed[i]= arrayData[i].Confirmed;
+                arrayCovidActive[i]= arrayData[i].Active;
+                arrayRecovered[i]= arrayData[i].Recovered;
+                
+                
+                
+                
+            }
+            arrayCovidActive[154]=arrayCovidActive[155];
+            arrayRecovered[154]= arrayRecovered[155];
+            
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                    data: {
+                        labels: arrayDates,
+                        backgroundColor:['#E0F4FF','#F4F7C1'],
+                        datasets: [
+                            {
+                            label: 'Confirmed',
+                            data: arrayCovidConfirmed,
+                            borderColor:'rgb(52, 113, 235)',
+                            
+                            borderWidth: 1
+                        },
+                        
+                        {
+                            label: 'Active',
+                            data: arrayCovidActive,
+                            borderColor:'rgb(235, 229, 52)',
+                            
+                            borderWidth: 1
+                        } ,
+                        {
+                            label: 'Recovered',
+                            data: arrayRecovered,
+                            borderColor:'rgb(48, 230, 90)',
+                            
+                            borderWidth: 1
+                        }
+                        ],
+                        
+                        },
+                    
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    
+                                }
+                            }]
+                        }
+                    }
+                });
+        }).catch(err => console.log(err));
+
+        
+       
+                
+              
+        function onSubmit(){
+            
+            document.getElementById("err").innerHTML="";
+            const Cases = 0 ;
+            const  cname = document.getElementById("CName").value;
+            const url = 'https://corona.lmao.ninja/v2/countries/' + cname;
+            const graph = "https://api.covid19api.com/country/" + cname;
+            
+            fetch(url).then(data => { return data.json()}).then(data =>{ 
+            
+            document.getElementById('Country').innerHTML = data.country.toUpperCase();
+            document.getElementById("Cases").innerHTML = data.cases;
+            document.getElementById("Active").innerHTML = data.active.toLocaleString();
+            document.getElementById("Recovered").innerHTML = data.recovered.toLocaleString();
+            document.getElementById("TodayDeaths").innerHTML = data.todayDeaths.toLocaleString();
+            document.getElementById("TodayRecovered").innerHTML = data.todayRecovered.toLocaleString();
+            document.getElementById("Deaths").innerHTML = data.deaths.toLocaleString();
+            document.getElementById("TotalTests").innerHTML = data.tests.toLocaleString();
+            document.getElementById("OnepersonCases").innerHTML = data.oneCasePerPeople.toLocaleString();
+            document.getElementById("Precentage").innerHTML = (data.deaths/data.cases).toLocaleString();
+            }).catch(err => document.getElementById("err").innerHTML =  "InValid Country"  );
+            
+            fetch(graph).then(data => {return data.json()}).then(item => {
+                        arrayData = item;
+                        
+                        
+                        for(var i =0 ; i<arrayData.length;i++){
+                            
+                            arrayDates[i] = new Date(arrayData[i].Date).toDateString();
+                            arrayCovidConfirmed[i]= arrayData[i].Confirmed;
+                            arrayCovidActive[i]= arrayData[i].Active;
+                            arrayRecovered[i]= arrayData[i].Recovered;
+                            
+                          
+                           
+                            
+                        }
+                        arrayCovidActive[154]=arrayCovidActive[155];
+                        arrayRecovered[154]= arrayRecovered[155];
+                       
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                                data: {
+                                    labels: arrayDates,
+                                    backgroundColor:['#E0F4FF','#F4F7C1'],
+                                    datasets: [
+                                        {
+                                        label: 'Confirmed',
+                                        data: arrayCovidConfirmed,
+                                        borderColor:'rgb(52, 113, 235)',
+                                        
+                                        borderWidth: 1
+                                    },
+                                    
+                                    {
+                                        label: 'Active',
+                                        data: arrayCovidActive,
+                                        borderColor:'rgb(235, 229, 52)',
+                                       
+                                        borderWidth: 1
+                                    } ,
+                                    {
+                                        label: 'Recovered',
+                                        data: arrayRecovered,
+                                        borderColor:'rgb(48, 230, 90)',
+                                        
+                                        borderWidth: 1
+                                    }
+                                    ],
+                                    
+                                   },
+                                
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true,
+                                              
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                    }).catch(err => console.log(err));
+        
+                    
+                    
+        }
+        
+    </script>
+    
+</body>
+</html>
             min-width: 200px;
             margin: auto;
             font-size: 20px !important;
