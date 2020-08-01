@@ -7,28 +7,21 @@
 </head>
 <body class="body">
     <style>
-        *col{
-            margin: 0
-        };
-        .col-lg-3{
-            min-width: 200px;
-            margin: auto;
-            font-size: 20px !important;
-        }
-        .col-md-6{
-            font-size: 30px;
-            
+        .col-6{
+            font-size: 1em !important;
         }
         .card{
             animation: Fadein 2s;
-            height: 80px;
-            margin: 20px auto;
+            margin: 0 auto;
             text-align: center;
             border-radius: 10px;
-            
         }
-        
+        .Hieght{
+            margin: 20px auto;
+            height: 170px;
+        }
         .cardHead{
+            border-radius: 10px;
             text-align: center;
             background-color: azure;
             font-size: 3em;
@@ -37,17 +30,14 @@
             border: 1px solid darkblue ;
             
         }
-        .cardHeading{
-            background-color: rgb(177, 177, 192);
-            color: black;
-            font-size: 1em;
+        .card-header{
+            font-size: 1em !important;
             font-weight: bold;
-            border-radius: 1px;
         }
+
         .countryName{
          width: 100%;
          height: 100px;
-        
          background-color: lightsteelblue;
         }
         .form{
@@ -56,55 +46,68 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            
         }
         .box{
             width: 100%;
             padding: 0;
-            
             background: linear-gradient(to right, #6699ff 28%, #33ccff 100%);
             position: absolute;
             top: 0;
             z-index: -11;
         }
-        
-        .row{
-            margin-top: 10px;
-        }
         footer{
-           
-            text-align: center;
+               text-align: center;
+               color: blanchedalmond;
         }
+
         input{
             width: 80%;
         }
+
         .Feedback{
             position: relative;
             z-index: 100;
             height: 32px;
         }
+
         a{
             color: #000;
         }
+
         .efect{
-            margin-top: 5vh;
             border-radius: 10px;
-            padding: 30px;
-            margin: 0 10px;
-            background-color: ghostwhite;
-            
+            padding: 0 30px;
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 16%, rgba(0,212,255,1) 100%);
         }
-      
+
+        #myChart,#myChart2{
+            background-color: rgb(240, 240, 240);
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
         @keyframes Fadein {
             from{opacity: 0;}
             to{opacity: 1;}
         }
-        
+
+        .New{
+            font-size: 1em;
+            color:rgb(184, 45, 45);
+            font-weight: bold;
+        }
+
         span{
             font-size: 2em;
         }
             
-        
+        .DeathPrecentage{
+            color: white;
+        }
+        #lastupdate{
+            font-size: .75em;
+        }
     </style>
     
     <div class="box">
@@ -116,80 +119,76 @@
   <div class="md-8 col-lg-8">
       
     <div class="efect">
+              
+        <div class="card">
+            <div class="cardHead">Covid-Tracker</div>
+          
+            <h3 align="center" id="Country"></h3>
+            
            
-              <div class="card">
-                    <div class="cardHead">
-                        Covid-Tracker
-                    </div>
-                    <div class="countryName">
-                        <h3 align="center" id="Country"></h3>
-                    </div>
-               
-                </div>
+        </div>
  
         <div class="row ">
 
-                  <div class=" col-md-12 col-lg-3">
-                      <div class="card">
-                          <div class="cardHeading">Total cases</div>
+                  <div class="col-lg-4 col-6">
+                      <div class="card Hieght">
+                          <div class="card-header">Confirmed</div>
                           
-                          <span id="Cases"></span>
+                            <span id="Cases"></span>
+                            
+                            
                           
                       </div>
                   </div>
-                  <div class="col-lg-3 col-md-12">
-                      <div class="card">
-                       <div class="cardHeading">Total Active Cases</div>
-                       <span id="Active"></span>
+                  <div class="col-lg-4 col-6 ">
+                      <div class="card Hieght">
+                            <div class="card-header">Active Cases</div>
+                            <span id="Active"></span>
+                            <span class="New" id="NewCases"></span>
                       </div>
                   </div>
-                  <div class="col-lg-3 col-md-12">
-                    <div class="card">
-                     <div class="cardHeading">Total Recovered Cases</div>
-                     <span id="Recovered"></span>
+                  <div class="col-lg-4 col-6 ">
+                    <div class="card Hieght">
+                     <div class="card-header">Recovered Cases</div>
+                     
+                            <span id="Recovered"></span>
+                            <span class="New" id="TodayRecovered"></span>
+                    
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12">
-                    <div class="card">
-                     <div class="cardHeading">Total Deaths</div>
+                <div class="col-lg-4 col-6">
+                    <div class="card Hieght">
+                     <div class="card-header">Total Deaths</div>
                      <span id="Deaths"></span>
+                     <span class="New" id="TodayDeaths"></span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12">
-                    <div class="card">
-                     <div class="cardHeading">Today Deaths</div>
-                     <span id="TodayDeaths"></span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-12">
-                    <div class="card">
-                     <div class="cardHeading">Today Recovered</div>
-                     <span id="TodayRecovered"></span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-12 col-sm-12">
-                    <div class="card">
-                     <div class="cardHeading">Total Tests</div>
+               
+              
+                <div class="col-lg-4 col-6">
+                    <div class="card Hieght">
+                     <div class="card-header">Total Tests</div>
                      <span id="TotalTests"></span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12">
-                    <div class="card">
-                     <div class="cardHeading">One case per People</div>
+                <div class="col-lg-4 col-6" >
+                    <div class="card Hieght">
+                     <div class="card-header">One case per People</div>
                      <span id="OnepersonCases"></span>
                     </div>
                 </div>
 
               </div>
               
-              <div align="center">
-              <span>Death Percentage</span> : <span id="Precentage"></span> %
+              <div class="DeathPrecentage" align="center">
+              <span >Death Percentage</span> : <span id="Precentage"></span> %<br>
+              <span id="lastupdate"></span>
               </div>
                      
              
                 <canvas id="myChart" width="100" height="50"></canvas>
-                
-                
+                <canvas id="myChart2" width="100" height="50"></canvas>
+               
                 
 
                
@@ -227,22 +226,25 @@
 
 <div class="md-2 col-lg-2"></div>
 </div>
+</div>
 
     <script>
             var ctx = document.getElementById('myChart').getContext('2d');
-
+            var ctr = document.getElementById('myChart2').getContext('2d');
 
             fetch('https://corona.lmao.ninja/v2/countries/India').then(data => { return data.json()}).then(data =>{ 
             document.getElementById('Country').innerHTML = data.country.toUpperCase();
             document.getElementById('Cases').innerHTML = data.cases.toLocaleString();
+            document.getElementById('NewCases').innerHTML = '+'+data.todayCases.toLocaleString();
             document.getElementById("Active").innerHTML = data.active.toLocaleString();
             document.getElementById("Recovered").innerHTML = data.recovered.toLocaleString();
-            document.getElementById("TodayDeaths").innerHTML = data.todayDeaths.toLocaleString();
-            document.getElementById("TodayRecovered").innerHTML = data.todayRecovered.toLocaleString();
+            document.getElementById("TodayDeaths").innerHTML = '+'+ data.todayDeaths.toLocaleString();
+            document.getElementById("TodayRecovered").innerHTML = '+'+ data.todayRecovered.toLocaleString();
             document.getElementById("Deaths").innerHTML = data.deaths.toLocaleString();
             document.getElementById("TotalTests").innerHTML = data.tests.toLocaleString();
             document.getElementById("OnepersonCases").innerHTML = data.oneCasePerPeople.toLocaleString();
             document.getElementById("Precentage").innerHTML =  (data.deaths/data.cases).toLocaleString();
+            document.getElementById('lastupdate').innerHTML = new Date(data.updated).toLocaleDateString() + "  " +new Date(data.updated).toLocaleTimeString();
             });
         
         let arrayData = [];
@@ -250,22 +252,34 @@
         let arrayCovidActive =[];
         let arrayCovidConfirmed =[];
         let arrayRecovered = [];
+        let deaths=[];
         fetch("https://api.covid19api.com/country/india").then(data => {return data.json()}).then(item => {
             arrayData = item;
-            
+            console.log(arrayData[168].Date)
             for(var i =0 ; i<arrayData.length;i++){
                 
                 arrayDates[i] = new Date(arrayData[i].Date).toDateString();
                 arrayCovidConfirmed[i]= arrayData[i].Confirmed;
                 arrayCovidActive[i]= arrayData[i].Active;
                 arrayRecovered[i]= arrayData[i].Recovered;
-                
-                
-                
-                
-            }
-            arrayCovidActive[154]=arrayCovidActive[155];
-            arrayRecovered[154]= arrayRecovered[155];
+            };
+            arrayData[168].Deaths = arrayData[169]-400;
+            for(var i =0 ; i<arrayData.length-1;i++){
+                deaths[i]=arrayData[i+1].Deaths - arrayData[i].Deaths;
+                if(deaths[i]<0)
+                {
+                    deaths[i]=0;
+                }
+            };
+            var avgrec = ((arrayData[arrayData.length-1].Recovered-arrayData[arrayData.length-2].Recovered)+(arrayData[arrayData.length-2].Recovered-arrayData[arrayData.length-3].Recovered))/2 ;
+            var avgActive = ((arrayData[arrayData.length-1].Active-arrayData[arrayData.length-2].Active)+(arrayData[arrayData.length-2].Active-arrayData[arrayData.length-3].Active))/2 ;
+            deaths[58]=0;
+            console.log("apx days at this speed " + (arrayData[arrayData.length -1]).Active/(avgrec-avgActive) )
+            
+            arrayCovidActive[168]=(arrayCovidActive[167]+arrayCovidActive[169])/2
+            arrayRecovered[168]=(arrayRecovered[167]+arrayRecovered[169])/2
+            arrayCovidActive[154]=(arrayCovidActive[155]+arrayCovidActive[153])/2;
+            arrayRecovered[154]= (arrayRecovered[155]+arrayRecovered[153])/2;
             
             var myChart = new Chart(ctx, {
                 type: 'line',
@@ -277,22 +291,46 @@
                             label: 'Confirmed',
                             data: arrayCovidConfirmed,
                             borderColor:'rgb(52, 113, 235)',
-                            
                             borderWidth: 1
                         },
-                        
                         {
                             label: 'Active',
                             data: arrayCovidActive,
                             borderColor:'rgb(235, 229, 52)',
-                            
                             borderWidth: 1
                         } ,
                         {
                             label: 'Recovered',
                             data: arrayRecovered,
                             borderColor:'rgb(48, 230, 90)',
-                            
+                            borderWidth: 1
+                        }
+                        ],
+                        
+                        },
+                    
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    
+                                }
+                            }]
+                        }
+                    }
+                });
+                var myChart2 = new Chart(ctr, {
+                type: 'bar',
+                    data: {
+                        labels: arrayDates,
+                        
+                        datasets: [
+                            {
+                            label: 'Deaths',
+                            data: deaths,
+                            borderColor:'rgb(153, 60, 64)',
+                            backgroundColor:'rgb(153, 60, 64)',
                             borderWidth: 1
                         }
                         ],
@@ -325,36 +363,41 @@
             const graph = "https://api.covid19api.com/country/" + cname;
             
             fetch(url).then(data => { return data.json()}).then(data =>{ 
-            
-            document.getElementById('Country').innerHTML = data.country.toUpperCase();
-            document.getElementById("Cases").innerHTML = data.cases;
-            document.getElementById("Active").innerHTML = data.active.toLocaleString();
-            document.getElementById("Recovered").innerHTML = data.recovered.toLocaleString();
-            document.getElementById("TodayDeaths").innerHTML = data.todayDeaths.toLocaleString();
-            document.getElementById("TodayRecovered").innerHTML = data.todayRecovered.toLocaleString();
-            document.getElementById("Deaths").innerHTML = data.deaths.toLocaleString();
-            document.getElementById("TotalTests").innerHTML = data.tests.toLocaleString();
-            document.getElementById("OnepersonCases").innerHTML = data.oneCasePerPeople.toLocaleString();
-            document.getElementById("Precentage").innerHTML = (data.deaths/data.cases).toLocaleString();
+                document.getElementById('Country').innerHTML = data.country.toUpperCase();
+                document.getElementById("Cases").innerHTML = data.cases;
+                document.getElementById("Active").innerHTML = data.active.toLocaleString();
+                document.getElementById("Recovered").innerHTML = data.recovered.toLocaleString();
+                document.getElementById("TodayDeaths").innerHTML = '+'+data.todayDeaths.toLocaleString();
+                document.getElementById("TodayRecovered").innerHTML = '+'+data.todayRecovered.toLocaleString();
+                document.getElementById("Deaths").innerHTML = data.deaths.toLocaleString();
+                document.getElementById("TotalTests").innerHTML = data.tests.toLocaleString();
+                document.getElementById("OnepersonCases").innerHTML = data.oneCasePerPeople.toLocaleString();
+                document.getElementById("Precentage").innerHTML = (data.deaths/data.cases).toLocaleString();
             }).catch(err => document.getElementById("err").innerHTML =  "InValid Country"  );
             
             fetch(graph).then(data => {return data.json()}).then(item => {
                         arrayData = item;
-                        
-                        
                         for(var i =0 ; i<arrayData.length;i++){
                             
                             arrayDates[i] = new Date(arrayData[i].Date).toDateString();
                             arrayCovidConfirmed[i]= arrayData[i].Confirmed;
                             arrayCovidActive[i]= arrayData[i].Active;
                             arrayRecovered[i]= arrayData[i].Recovered;
-                            
-                          
-                           
-                            
                         }
+                        for(var i =0 ; i<arrayData.length-1;i++){
+                            deaths[i]=arrayData[i+1].Deaths - arrayData[i].Deaths;
+                            if(deaths[i]<0){deaths[i]=0}
+                        };
                         arrayCovidActive[154]=arrayCovidActive[155];
                         arrayRecovered[154]= arrayRecovered[155];
+                        arrayCovidActive[154]=arrayCovidActive[155];
+                        arrayRecovered[154]= arrayRecovered[155];
+                        
+                        
+                        
+            
+                        
+            
                        
                         var myChart = new Chart(ctx, {
                             type: 'line',
@@ -366,7 +409,6 @@
                                         label: 'Confirmed',
                                         data: arrayCovidConfirmed,
                                         borderColor:'rgb(52, 113, 235)',
-                                        
                                         borderWidth: 1
                                     },
                                     
@@ -399,6 +441,34 @@
                                     }
                                 }
                             });
+                            var myChart2 = new Chart(ctr, {
+                                type: 'bar',
+                                    data: {
+                                        labels: arrayDates,
+                                        
+                                        datasets: [
+                                            {
+                                            label: 'Deaths',
+                                            data: deaths,
+                                            borderColor:'rgb(153, 60, 64)',
+                                            backgroundColor: ['rgb(153, 60, 64)'],
+                                            borderWidth: 2,
+                                        }
+                                        ],
+                                        
+                                        },
+                                    
+                                    options: {
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: true,
+                                                    
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
                     }).catch(err => console.log(err));
         
                     
